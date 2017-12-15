@@ -67,6 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
