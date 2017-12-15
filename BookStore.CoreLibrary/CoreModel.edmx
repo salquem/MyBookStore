@@ -11,7 +11,20 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookStore.DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="BookStoreEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="BookStoreEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Books" EntityType="BookStore.DbModel.Book" />
+        </EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>Le titre du livre</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

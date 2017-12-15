@@ -28,7 +28,6 @@ if (container == null)
 //------------------------------------------------------------------------------
 
 <#
-
 var codeNamespace = code.VsNamespaceSuggestion();
 if (!String.IsNullOrEmpty(codeNamespace))
 {
@@ -42,7 +41,6 @@ namespace <#=code.EscapeNamespace(codeNamespace)#>
 #>
 using System;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 <#
 if (container.FunctionImports.Any())
 {
@@ -58,6 +56,7 @@ using System.Linq;
     public <#=code.Escape(container)#>()
         : base("name=<#=container.Name#>")
     {
+		this.Initialize();
 <#
 if (!loader.IsLazyLoadingEnabled(container))
 {
@@ -80,11 +79,7 @@ foreach (var entitySet in container.BaseEntitySets.OfType<EntitySet>())
 #>
     }
 
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        throw new UnintentionalCodeFirstException();
-    }
-
+	#region DbSets
 <#
     foreach (var entitySet in container.BaseEntitySets.OfType<EntitySet>())
     {
@@ -92,12 +87,16 @@ foreach (var entitySet in container.BaseEntitySets.OfType<EntitySet>())
     <#=codeStringGenerator.DbSet(entitySet)#>
 <#
     }
-
+#>
+	#endregion
+<#
     foreach (var edmFunction in container.FunctionImports)
     {
         WriteFunctionImport(typeMapper, codeStringGenerator, edmFunction, modelNamespace, includeMergeOption: false);
     }
 #>
+
+	partial void Initialize();
 }
 <#
 

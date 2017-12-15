@@ -11,19 +11,19 @@ namespace BookStore.CoreLibrary
 {
     using System;
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
     
     public partial class BookStoreEntities : DbContext
     {
         public BookStoreEntities()
             : base("name=BookStoreEntities")
         {
+    		this.Initialize();
         }
     
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
+    	#region DbSets
+        public virtual DbSet<Book> Books { get; set; }
+    	#endregion
     
+    	partial void Initialize();
     }
 }
