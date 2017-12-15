@@ -67,6 +67,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712152237322_Init.cs" />
+    <Compile Include="Migrations\201712152237322_Init.Designer.cs">
+      <DependentUpon>201712152237322_Init.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>CoreModel.tt</DependentUpon>
@@ -100,6 +104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712152237322_Init.resx">
+      <DependentUpon>201712152237322_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
