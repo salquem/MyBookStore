@@ -22,6 +22,7 @@ namespace BookStore.CoreLibrary
     
     	#region DbSets
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Person> Persons { get; set; }
     	#endregion
     
     	partial void Initialize();

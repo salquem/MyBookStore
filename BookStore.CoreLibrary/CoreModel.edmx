@@ -13,6 +13,11 @@
       <Schema Namespace="BookStore.DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BookStoreEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Books" EntityType="BookStore.DbModel.Book" />
+          <EntitySet Name="Persons" EntityType="BookStore.DbModel.Person" />
+          <AssociationSet Name="BookPerson" Association="BookStore.DbModel.BookPerson">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="Person" EntitySet="Persons" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Book">
           <Key>
@@ -24,7 +29,37 @@
               <Summary>Le titre du livre</Summary>
             </Documentation>
           </Property>
+          <NavigationProperty Name="Author" Relationship="BookStore.DbModel.BookPerson" FromRole="Book" ToRole="Person" >
+            <Documentation>
+              <Summary>L'autheur du livre</Summary>
+            </Documentation>
+          </NavigationProperty>
         </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>Le nom de la personne</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="FirstName" Type="String" Nullable="false" >
+            <Documentation>
+              <Summary>Le prénom de la personne</Summary>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="Books" Relationship="BookStore.DbModel.BookPerson" FromRole="Person" ToRole="Book" >
+            <Documentation>
+              <Summary>Les livres écrits par la personne</Summary>
+            </Documentation>
+          </NavigationProperty>
+        </EntityType>
+        <Association Name="BookPerson">
+          <End Type="BookStore.DbModel.Book" Role="Book" Multiplicity="*" />
+          <End Type="BookStore.DbModel.Person" Role="Person" Multiplicity="1" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

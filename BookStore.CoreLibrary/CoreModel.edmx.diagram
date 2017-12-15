@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4e5e40163b254a6cb0cfa89af6009f76" Name="Diagram1" >
         <EntityTypeShape EntityType="BookStore.DbModel.Book" Width="1.5" PointX="2.375" PointY="1.375" />
+        <EntityTypeShape EntityType="BookStore.DbModel.Person" Width="1.5" PointX="5.875" PointY="1.375" />
+        <AssociationConnector Association="BookStore.DbModel.BookPerson" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

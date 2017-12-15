@@ -68,6 +68,9 @@
       <DependentUpon>CoreModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Person.cs">
+      <DependentUpon>CoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

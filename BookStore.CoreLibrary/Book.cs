@@ -19,5 +19,10 @@ namespace BookStore.CoreLibrary
         /// Le titre du livre
         /// </summary>
         public string Title { get; set; }
+    
+        /// <summary>
+        /// L'autheur du livre
+        /// </summary>
+        public virtual Person Author { get; set; }
     }
 }
